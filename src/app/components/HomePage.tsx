@@ -80,7 +80,7 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 
 	return (
 		<div
-			className={` grow w-full h-full flex flex-col items-center p-10 pt-8 transition-all duration-300 ease-in-out`}
+			className={` grow w-full h-full flex flex-col items-center p-4 pt-8 transition-all duration-300 ease-in-out`}
 			style={{
 				paddingTop: isOpen || selectedCountry ? "2rem" : 0,
 				position: "absolute",
@@ -89,7 +89,7 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 		>
 			<div className="max-w-lg sm:max-w-xl md:max-w-2xl w-full ">
 				<h1
-					className={` font-black mb-4 text-white font-sans  text-center ${
+					className={` font-black mb-4 text-white font-sans  text-center  ${
 						isOpen || selectedCountry
 							? "text-lg sm:text-4xl md:text-5xl"
 							: "text-4xl sm:text-6xl md:text-7xl"
@@ -106,7 +106,7 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 					Around the World
 				</h1>
 
-				<div className="relative w-full " ref={dropdownRef}>
+				<div className="relative w-full px-6 " ref={dropdownRef}>
 					<div
 						className={` flex flex-row bg-white  ${
 							isOpen ? "rounded-t-md" : "rounded-md"
