@@ -50,6 +50,7 @@ export const getPublicHolidays = async (year: number, countryCode: string) => {
             return [];
         }
 
+      
     
         const data: PublicHoliday[] = await response.json();
 

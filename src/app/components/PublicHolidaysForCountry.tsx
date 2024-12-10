@@ -1,7 +1,7 @@
 "use client";
 
 import { DropdownCountry, PublicHoliday } from "@/types/publicHolidays";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { LoadingSpinner } from "./loaders/Spinner";
 
 interface PublicHolidaysForCountryProps {
@@ -15,22 +15,6 @@ function PublicHolidaysForCountry({
 	selectedCountry,
 	year,
 }: PublicHolidaysForCountryProps) {
-	const [showContent, setShowContent] = useState(false);
-
-	useEffect(() => {
-		if (selectedCountry) {
-			// Wait 500ms before showing the content
-			const timer = setTimeout(() => {
-				setShowContent(true);
-			}, 500); // 500ms delay
-
-			// Cleanup the timer when component unmounts or selectedCountry changes
-			return () => clearTimeout(timer);
-		} else {
-			setShowContent(false);
-		}
-	}, [selectedCountry]);
-
 	return publicHolidays && publicHolidays.length > 0 ? (
 		<div className="mt-2 bg-white p-2 rounded-md w-full">
 			<div className="flex flex-row  text-stone-600 text-base sm:text-xl">
@@ -75,7 +59,7 @@ function PublicHolidaysForCountry({
 				})}
 			</div>
 		</div>
-	) : selectedCountry && showContent ? (
+	) : selectedCountry && publicHolidays && publicHolidays.length === 0 ? (
 		<div className="mt-2 bg-white p-4 rounded-md w-full">
 			<p className="text-stone-600 text-xl">
 				No holidays found for{" "}
