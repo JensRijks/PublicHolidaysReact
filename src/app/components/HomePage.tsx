@@ -7,6 +7,7 @@ import emptyTrashIcon from "@/assets/trashEmpty.svg";
 import Image from "next/image";
 import { DropdownCountry } from "@/types/publicHolidays";
 import PublicHolidaysForCountry from "./PublicHolidaysForCountry";
+import Flag from "react-world-flags";
 
 const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 	countries,
@@ -163,22 +164,38 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 									? countries.map((country) => (
 											<li
 												key={country.countryCode}
-												className="p-2 hover:bg-secondary cursor-pointer"
+												className="p-2 hover:bg-secondary cursor-pointer flex flex-row gap-2 items-center"
 												onClick={() =>
 													handleCountrySelect(country)
 												}
 											>
+												{country.countryCode && (
+													<Flag
+														code={
+															country.countryCode
+														}
+														className="w-6 h-6"
+													/>
+												)}
 												{country.name}
 											</li>
 									  ))
 									: filteredCountries.map((option) => (
 											<li
 												key={option.countryCode}
-												className="p-2 hover:bg-secondary cursor-pointer"
+												className="p-2 hover:bg-secondary cursor-pointer flex flex-row gap-2 items-center"
 												onClick={() =>
 													handleCountrySelect(option)
 												}
 											>
+												{option.countryCode && (
+													<Flag
+														code={
+															option.countryCode
+														}
+														className="w-6 h-6"
+													/>
+												)}
 												{option.name}
 											</li>
 									  ))}

@@ -1,5 +1,6 @@
 import { PublicHoliday } from "@/types/publicHolidays";
 import React from "react";
+import Flag from "react-world-flags";
 
 interface HolidayModalProps {
 	isModalOpen: boolean;
@@ -28,6 +29,12 @@ function HolidayModal({
 						onClick={handleCloseModal}
 					>
 						X
+						{selectedHoliday.countryCode && (
+							<Flag
+								code={selectedHoliday.countryCode}
+								className="w-6 h-6"
+							/>
+						)}
 					</button>
 					<h2 className="text-3xl font-bold ">
 						{selectedHoliday.name}
