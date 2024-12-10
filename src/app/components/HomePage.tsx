@@ -194,7 +194,11 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 				)}
 			</div>
 
-			<PublicHolidaysForCountry publicHolidays={publicHolidays} />
+			<PublicHolidaysForCountry
+				publicHolidays={publicHolidays}
+				selectedCountry={selectedCountry}
+				year={year}
+			/>
 		</div>
 	);
 };

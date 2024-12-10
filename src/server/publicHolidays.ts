@@ -2,7 +2,6 @@
 
 import { PublicHoliday, publicHolidaysSchema } from "@/types/publicHolidays";
 
-
 export const getAllAvailableCountries = async () => {
     try {
         const response = await fetch('https://date.nager.at/api/v3/AvailableCountries', {
@@ -48,7 +47,7 @@ export const getPublicHolidays = async (year: number, countryCode: string) => {
 
         if (!response.ok) {
        
-            throw new Error(`Failed to fetch public holidays. Status: ${response.status}`);
+            return [];
         }
 
     
