@@ -17,6 +17,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
 	title: "Public Holidays React",
 	description: "Get public holidays for almost any country",
+	icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export default function RootLayout({
