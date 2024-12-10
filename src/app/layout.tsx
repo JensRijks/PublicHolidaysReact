@@ -27,7 +27,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-clip-text bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-stone-700 via-stone-900 to-black  w-screen h-screen`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-fixed bg-clip-text bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-stone-500 via-stone-700 to-stone-900 w-screen h-screen overflow-x-hidden`}
 			>
 				<Providers>{children}</Providers>
 			</body>
