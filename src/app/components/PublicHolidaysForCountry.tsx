@@ -3,6 +3,7 @@
 import { DropdownCountry, PublicHoliday } from "@/types/publicHolidays";
 import React, { useState } from "react";
 import { LoadingSpinner } from "./loaders/Spinner";
+import HolidayModal from "./modals/HolidayModal";
 
 interface PublicHolidaysForCountryProps {
 	publicHolidays: PublicHoliday[] | undefined;
@@ -19,6 +20,9 @@ function PublicHolidaysForCountry({
 		"date"
 	);
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedHoliday, setSelectedHoliday] =
+		useState<PublicHoliday | null>(null);
 
 	const sortedPublicHolidays = [...(publicHolidays || [])]
 		.sort((a, b) => {
@@ -66,8 +70,24 @@ function PublicHolidaysForCountry({
 		}
 	};
 
+	const handleOpenModal = (holiday: PublicHoliday) => {
+		setSelectedHoliday(holiday);
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+		setSelectedHoliday(null);
+	};
+
 	return publicHolidays && publicHolidays.length > 0 ? (
 		<div className="mt-2 bg-white p-2 rounded-md w-full">
+			<HolidayModal
+				isModalOpen={isModalOpen}
+				selectedHoliday={selectedHoliday}
+				handleCloseModal={handleCloseModal}
+			/>
+
 			<div className="flex flex-row  text-stone-600 text-base sm:text-xl">
 				<p
 					onClick={() => handleSort("date")}
@@ -125,7 +145,8 @@ function PublicHolidaysForCountry({
 					return (
 						<div
 							key={holiday.date + " " + index}
-							className="p-2 rounded-md"
+							className="p-2 rounded-md cursor-pointer "
+							onClick={() => handleOpenModal(holiday)}
 							style={
 								index % 2 === 0
 									? {
@@ -143,7 +164,10 @@ function PublicHolidaysForCountry({
 								<p className="hidden sm:block sm:w-44">
 									{dayOfWeek}
 								</p>
-								<p className="w-full">{holiday.name}</p>
+								<div className="flex flex-row w-full items-center">
+									<p className="w-full">{holiday.name} </p>
+									<span className="">&#x2726;</span>
+								</div>
 							</div>
 						</div>
 					);
