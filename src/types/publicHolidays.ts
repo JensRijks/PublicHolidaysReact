@@ -15,6 +15,13 @@ export type FormValuesSearchableDropdown = z.infer<typeof searchableDropdownSche
 export interface DropdownCountry {
 	name: string;
 	countryCode: string;
+    date: string;  
+    localName: string; 
+ 
+    global: boolean;
+    counties: string | null;
+    launchYear: number | null; 
+    types: ("Public" | "Bank" | "School" | "Authorities" | "Optional" | "Observance")[];
 }
 
 

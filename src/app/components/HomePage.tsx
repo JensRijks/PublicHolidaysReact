@@ -92,7 +92,7 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 				className={` font-black mb-4 text-white font-sans  ${
 					isOpen || selectedCountry
 						? "text-lg sm:text-4xl md:text-5xl"
-						: "text-3xl sm:text-6xl md:text-7xl"
+						: "text-4xl sm:text-6xl md:text-7xl"
 				}`}
 			>
 				Discover{" "}

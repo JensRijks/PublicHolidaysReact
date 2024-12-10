@@ -1,7 +1,7 @@
 "use client";
 
 import { DropdownCountry, PublicHoliday } from "@/types/publicHolidays";
-import React from "react";
+import React, { useState } from "react";
 import { LoadingSpinner } from "./loaders/Spinner";
 
 interface PublicHolidaysForCountryProps {
@@ -15,17 +15,108 @@ function PublicHolidaysForCountry({
 	selectedCountry,
 	year,
 }: PublicHolidaysForCountryProps) {
+	const [sortColumn, setSortColumn] = useState<"date" | "day" | "holiday">(
+		"date"
+	);
+	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+	const sortedPublicHolidays = [...(publicHolidays || [])]
+		.sort((a, b) => {
+			let comparison = 0;
+
+			// Sort based on the column
+			if (sortColumn === "date") {
+				comparison =
+					new Date(a.date).getTime() - new Date(b.date).getTime();
+			} else if (sortColumn === "day") {
+				const dayA = new Date(a.date).toLocaleString("en-US", {
+					weekday: "long",
+				});
+				const dayB = new Date(b.date).toLocaleString("en-US", {
+					weekday: "long",
+				});
+				comparison = dayA.localeCompare(dayB);
+			} else if (sortColumn === "holiday") {
+				comparison = a.name.localeCompare(b.name);
+			}
+
+			return sortOrder === "asc" ? comparison : -comparison;
+		})
+		.reduce((acc: PublicHoliday[], holiday) => {
+			// Remove duplicates
+			const existingHoliday = acc.find(
+				(h) =>
+					new Date(h.date).toLocaleDateString() ===
+					new Date(holiday.date).toLocaleDateString()
+			);
+
+			if (!existingHoliday) {
+				acc.push(holiday);
+			}
+
+			return acc;
+		}, []);
+
+	const handleSort = (column: "date" | "day" | "holiday") => {
+		if (sortColumn === column) {
+			setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+		} else {
+			setSortColumn(column);
+			setSortOrder("asc");
+		}
+	};
+
 	return publicHolidays && publicHolidays.length > 0 ? (
 		<div className="mt-2 bg-white p-2 rounded-md w-full">
 			<div className="flex flex-row  text-stone-600 text-base sm:text-xl">
-				<p className=" font-semibold w-40 sm:w-48 pl-2">DATE</p>
-				<p className="hidden sm:block sm:w-44 font-semibold  pl-3">
-					DAY
+				<p
+					onClick={() => handleSort("date")}
+					className=" font-semibold w-40 sm:w-48 pl-2 cursor-pointer flex items-center"
+				>
+					DATE
+					{sortColumn === "date" && (
+						<span
+							className="ml-2 text-base"
+							dangerouslySetInnerHTML={{
+								__html:
+									sortOrder === "asc" ? "&#9650;" : "&#9660;",
+							}}
+						/>
+					)}
 				</p>
-				<p className="w-full font-semibold pl-4">HOLIDAY</p>
+				<p
+					onClick={() => handleSort("day")}
+					className="hidden sm:block sm:w-44 font-semibold  pl-3 cursor-pointer  items-center"
+				>
+					DAY
+					{sortColumn === "day" && (
+						<span
+							className="ml-2 text-base"
+							dangerouslySetInnerHTML={{
+								__html:
+									sortOrder === "asc" ? "&#9650;" : "&#9660;",
+							}}
+						/>
+					)}
+				</p>
+				<p
+					onClick={() => handleSort("holiday")}
+					className="w-full font-semibold pl-4 cursor-pointer flex items-center"
+				>
+					HOLIDAY
+					{sortColumn === "holiday" && (
+						<span
+							className="ml-2 text-base"
+							dangerouslySetInnerHTML={{
+								__html:
+									sortOrder === "asc" ? "&#9650;" : "&#9660;",
+							}}
+						/>
+					)}
+				</p>
 			</div>
 			<div className="flex flex-col gap-1">
-				{publicHolidays.map((holiday, index) => {
+				{sortedPublicHolidays.map((holiday, index) => {
 					const dayOfWeek = new Date(holiday.date).toLocaleString(
 						"en-US",
 						{ weekday: "long" }
