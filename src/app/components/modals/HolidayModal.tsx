@@ -21,7 +21,7 @@ function HolidayModal({
 				onClick={handleCloseModal}
 			>
 				<div
-					className="bg-white p-6 rounded-md w-11/12 sm:w-96 relative"
+					className="bg-white p-6 rounded-md w-11/12 sm:w-96 relative pr-10"
 					onClick={(e) => e.stopPropagation()} // Prevent click from closing the modal
 				>
 					<button
@@ -59,10 +59,6 @@ function HolidayModal({
 							{selectedHoliday.countryCode}
 						</p>
 
-						<p>
-							<strong>Global:</strong>{" "}
-							{selectedHoliday.global ? "Yes" : "No"}
-						</p>
 						{selectedHoliday.counties && (
 							<p>
 								<strong>Counties:</strong>{" "}

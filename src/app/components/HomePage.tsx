@@ -80,7 +80,7 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 
 	return (
 		<div
-			className={` grow w-full h-full flex flex-col items-center p-4 pt-8 transition-all duration-300 ease-in-out`}
+			className={` grow w-full h-full flex flex-col items-center p-10 pt-8 transition-all duration-300 ease-in-out`}
 			style={{
 				paddingTop: isOpen || selectedCountry ? "2rem" : 0,
 				position: "absolute",

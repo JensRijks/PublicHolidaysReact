@@ -96,7 +96,7 @@ function PublicHolidaysForCountry({
 					DATE
 					{sortColumn === "date" && (
 						<span
-							className="ml-2 text-base"
+							className="ml-2 text-sm"
 							dangerouslySetInnerHTML={{
 								__html:
 									sortOrder === "asc" ? "&#9650;" : "&#9660;",
@@ -111,7 +111,7 @@ function PublicHolidaysForCountry({
 					DAY
 					{sortColumn === "day" && (
 						<span
-							className="ml-2 text-base"
+							className="ml-2 text-sm"
 							dangerouslySetInnerHTML={{
 								__html:
 									sortOrder === "asc" ? "&#9650;" : "&#9660;",
@@ -126,7 +126,7 @@ function PublicHolidaysForCountry({
 					HOLIDAY
 					{sortColumn === "holiday" && (
 						<span
-							className="ml-2 text-base"
+							className="ml-2 text-sm"
 							dangerouslySetInnerHTML={{
 								__html:
 									sortOrder === "asc" ? "&#9650;" : "&#9660;",
