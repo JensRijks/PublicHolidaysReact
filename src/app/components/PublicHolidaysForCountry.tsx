@@ -34,13 +34,11 @@ function PublicHolidaysForCountry({
 	return publicHolidays && publicHolidays.length > 0 ? (
 		<div className="mt-2 bg-white p-2 rounded-md w-full">
 			<div className="flex flex-row  text-stone-600 text-base sm:text-xl">
-				<p className="w-full font-semibold pl-4 pr-24 sm:pr-16 flex-1">
-					DATE
-				</p>
-				<p className="hidden sm:block w-full font-semibold pl-4 ">
+				<p className=" font-semibold w-40 sm:w-48 pl-2">DATE</p>
+				<p className="hidden sm:block sm:w-44 font-semibold  pl-3">
 					DAY
 				</p>
-				<p className="w-full font-semibold sm:pr-40">HOLIDAY</p>
+				<p className="w-full font-semibold pl-4">HOLIDAY</p>
 			</div>
 			<div className="flex flex-col gap-1">
 				{publicHolidays.map((holiday, index) => {
