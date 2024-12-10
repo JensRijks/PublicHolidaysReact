@@ -87,9 +87,9 @@ const HomePage: React.FC<{ countries: DropdownCountry[] }> = ({
 				top: isOpen || selectedCountry ? "0" : "40%",
 			}}
 		>
-			<div className="max-w-lg sm:max-w-xl md:max-w-2xl w-full">
+			<div className="max-w-lg sm:max-w-xl md:max-w-2xl w-full ">
 				<h1
-					className={` font-black mb-4 text-white font-sans  ${
+					className={` font-black mb-4 text-white font-sans  text-center ${
 						isOpen || selectedCountry
 							? "text-lg sm:text-4xl md:text-5xl"
 							: "text-4xl sm:text-6xl md:text-7xl"
